@@ -20,7 +20,7 @@ interface LayoutProps {
 export default function Layout({ children, title = 'INFQ' }: LayoutProps) {
   const router = useRouter()
   return (
-    <>
+    <div>
       <Head>
         <title>{title} | Infleqtion Intelligence</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -53,3 +53,26 @@ export default function Layout({ children, title = 'INFQ' }: LayoutProps) {
           <div style={{ padding: '12px 16px', borderTop: '1px solid var(--border-color)', fontSize: 10, color: 'var(--text-muted)', lineHeight: 1.5 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 5, marginBottom: 3 }}>
               <div className="live-dot" style={{ width: 5, height: 5 }} />
+              <span style={{ color: 'var(--quantum-green)' }}>AI-Powered · Live Data</span>
+            </div>
+            <div>Not investment advice.</div>
+          </div>
+        </aside>
+        <main style={{ marginLeft: 210, flex: 1, minHeight: '100vh' }}>
+          <div style={{ height: 50, background: 'var(--bg-secondary)', borderBottom: '1px solid var(--border-color)', display: 'flex', alignItems: 'center', padding: '0 22px', gap: 10, position: 'sticky', top: 0, zIndex: 50 }}>
+            <div className="live-dot" />
+            <span style={{ fontSize: 12, color: 'var(--quantum-green)' }}>Live Intelligence</span>
+            <div style={{ marginLeft: 'auto', display: 'flex', alignItems: 'center', gap: 8 }}>
+              <span className="ticker-badge">$INFQ</span>
+              <span style={{ fontFamily: 'monospace', fontSize: 14, fontWeight: 600 }}>$16.22</span>
+              <span style={{ fontSize: 11, background: '#2e0e0e', color: 'var(--red)', padding: '2px 7px', borderRadius: 5 }}>▼ -8.72%</span>
+            </div>
+          </div>
+          <div style={{ padding: '22px', maxWidth: 1200 }}>
+            {children}
+          </div>
+        </main>
+      </div>
+    </div>
+  )
+}
