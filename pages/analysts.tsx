@@ -42,7 +42,7 @@ export default function AnalystsPage() {
       </div>
 
       <AiPanel
-        placeholder='Ask: "What is Citi\'s thesis on INFQ?" or "How do quantum P/S multiples compare to AI stocks?"'
+        placeholder="Ask: What is Citi's thesis on INFQ? or How do quantum P/S multiples compare to AI stocks?"
         systemContext="You are a senior equity research analyst. Use forward revenue guidance when calculating P/S multiples. Answer questions about Infleqtion analyst coverage and quantum sector valuation."
       />
 
