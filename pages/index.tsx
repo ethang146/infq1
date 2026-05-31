@@ -26,4 +26,84 @@ const PARTNERS = ['U.S. Dept. of Defense', 'DARPA', 'NASA', 'NVIDIA (NVQLink)', 
 
 const TECH = [
   { name: 'Sqale Quantum Computer', desc: '1,600 physical qubits · 99.73% CZ-gate fidelity · Target: 30 logical qubits in 2026', color: '#4af0b8' },
-  { name: 'Tiqker Optical Atomic Clock', desc: 'GPS-denied precision timing · Royal Navy sea trials · D
+  { name: 'Tiqker Optical Atomic Clock', desc: 'GPS-denied precision timing · Royal Navy sea trials · Deployed by multiple DoD agencies', color: '#6bb5ff' },
+  { name: 'Quantum RF Sensors', desc: '"Quantum Spectrum" category · First fundamental RF architecture shift in decades', color: '#cc99ff' },
+  { name: 'Superstaq + CML Software', desc: 'Quantum-classical hybrid control · NVQLink integration with NVIDIA', color: '#ffaa66' },
+]
+
+export default function OverviewPage() {
+  return (
+    <Layout title="Overview">
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20, flexWrap: 'wrap' }}>
+        <span className="ticker-badge">$INFQ</span>
+        <h1 style={{ fontSize: 22, fontWeight: 500, margin: 0 }}>Infleqtion Overview</h1>
+        <span style={{ marginLeft: 'auto', fontSize: 12, color: 'var(--text-muted)' }}>Neutral-atom quantum · Founded 2007 · Louisville, CO</span>
+      </div>
+
+      <AiPanel
+        placeholder='Ask: "What does Infleqtion do?" or "What is the CHIPS Act deal?" or "Latest news?"'
+        systemContext="You are a financial analyst covering Infleqtion (NYSE: INFQ), a neutral-atom quantum computing and sensing company. Answer questions accurately, citing sources."
+      />
+
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(140px, 1fr))', gap: 8, marginBottom: 20 }}>
+        {KPIS.map((k) => (
+          <div className="kpi-card" key={k.label}>
+            <div className="kpi-label">{k.label}</div>
+            <div className={`kpi-value ${k.color}`}>{k.value}</div>
+            <div className="kpi-sub">{k.sub}</div>
+          </div>
+        ))}
+      </div>
+
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 16 }}>
+        <div className="card">
+          <div className="section-hd">About Infleqtion</div>
+          <p style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 12 }}>
+            Infleqtion (formerly ColdQuanta) is a full-stack quantum technology company built on a single neutral-atom platform spanning <strong style={{ color: 'var(--text-primary)' }}>quantum computing</strong>, <strong style={{ color: 'var(--text-primary)' }}>quantum sensing</strong>, and <strong style={{ color: 'var(--text-primary)' }}>quantum software</strong>. The company went public on the NYSE on February 13, 2026 via SPAC merger with Churchill Capital Corp X, raising $551.4M in gross proceeds.
+          </p>
+          <p style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.7 }}>
+            Core products include the <strong style={{ color: 'var(--text-primary)' }}>Sqale</strong> neutral-atom quantum computer, <strong style={{ color: 'var(--text-primary)' }}>Tiqker</strong> optical atomic clock, quantum RF receivers, and the <strong style={{ color: 'var(--text-primary)' }}>Superstaq</strong> software platform.
+          </p>
+          <div className="section-hd" style={{ marginTop: 14 }}>Key Partners & Customers</div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
+            {PARTNERS.map((p) => (
+              <span key={p} style={{ fontSize: 11, background: 'var(--bg-secondary)', color: 'var(--text-secondary)', border: '1px solid var(--border-color)', borderRadius: 10, padding: '2px 9px' }}>{p}</span>
+            ))}
+          </div>
+        </div>
+
+        <div className="card">
+          <div className="section-hd">Recent Milestones</div>
+          {MILESTONES.map((m, i) => (
+            <div key={i} style={{ display: 'flex', gap: 10, padding: '8px 0', borderBottom: i < MILESTONES.length - 1 ? '1px solid rgba(48,54,61,0.5)' : 'none' }}>
+              <div style={{ width: 8, height: 8, borderRadius: '50%', background: m.color, flexShrink: 0, marginTop: 5 }} />
+              <div style={{ flex: 1 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 2, flexWrap: 'wrap' }}>
+                  <span style={{ fontSize: 10, background: 'var(--bg-secondary)', color: m.color, border: `1px solid ${m.color}33`, borderRadius: 8, padding: '1px 7px', fontWeight: 600 }}>{m.tag}</span>
+                  <span style={{ fontSize: 10, color: 'var(--text-muted)' }}>{m.date}</span>
+                </div>
+                <div style={{ fontSize: 12, color: 'var(--text-primary)', lineHeight: 1.4 }}>{m.event}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="card">
+        <div className="section-hd">Technology Platform — Neutral Atom Core</div>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 10 }}>
+          {TECH.map((t) => (
+            <div key={t.name} style={{ background: 'var(--bg-secondary)', borderRadius: 8, padding: '10px 12px', borderLeft: `3px solid ${t.color}` }}>
+              <div style={{ fontSize: 13, fontWeight: 500, color: 'var(--text-primary)', marginBottom: 5 }}>{t.name}</div>
+              <div style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.5 }}>{t.desc}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <p style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 14 }}>
+        Sources: Infleqtion SEC filings, BusinessWire, CNBC, SEC EDGAR. Not investment advice. Data as of May 2026.
+      </p>
+    </Layout>
+  )
+}
